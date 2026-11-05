@@ -67,3 +67,13 @@ export function checkAvailability(
   }
   return { status: 'available' };
 }
+
+// Checks availability using the bookings and blocked status of ONE chosen room.
+export function checkRoom(
+  room: { name: string; blocked: boolean; bookings: Booking[] },
+  start: number,
+  end: number,
+  now: number,
+): Result {
+  return checkAvailability(start, end, now, room.blocked, room.bookings, room.name);
+}
